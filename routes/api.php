@@ -24,3 +24,13 @@ use App\Http\Controllers\AuthCT;
 // Api Register & Login
 Route::post('/register', [AuthCT::class, 'register']);
 Route::post('/login', [AuthCT::class, 'login']);
+
+//Panggil InformasiTravelCT sebagai object
+use App\Http\Controllers\InformasiTravelCT;
+use App\Models\InformasiTravel;
+
+//Api CRUD data travel
+Route::post('/InformasiTravel', [InformasiTravelCT::class, 'store']);
+Route::get('/InformasiTravel',[InformasiTravelCT::class, 'show']);
+Route::put('InformasiTravel/{id}', [InformasiTravelCT::class, 'update']);
+Route::delete('InformasiTravel/{id}', [InformasiTravelCT::class, 'delete']);
