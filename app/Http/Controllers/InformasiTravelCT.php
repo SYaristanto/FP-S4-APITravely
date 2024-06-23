@@ -8,8 +8,7 @@ use App\Models\InformasiTravel;
 
 class InformasiTravelCT extends Controller
 {
-    public function store(Request $request)
-    {
+    public function store( Request $request){
         $validator = Validator::make($request->all(), [
             'armada' => 'required|string|max:255',
             'keberangkatan' => 'required|string|max:255',
@@ -23,7 +22,7 @@ class InformasiTravelCT extends Controller
             return response()->json($validator->messages()->toArray(), 400);
         }
 
-        $informasiTravel = InformasiTravel::create($request->all());
+        $informasiTravel = InformasiTravel::create( $request->all());
         
         return response()->json([
             'message' => 'Informasi Travel Berhasil Disimpan',
@@ -41,7 +40,7 @@ class InformasiTravelCT extends Controller
     public function update(Request $request, $id)
     {
         // Validasi input
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make( $request->all(), [
             'armada' => 'sometimes|string|max:255',
             'keberangkatan' => 'sometimes|string|max:255',
             'tujuan' => 'sometimes|string|max:255',
