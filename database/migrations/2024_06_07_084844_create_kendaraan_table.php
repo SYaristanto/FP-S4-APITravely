@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('kendaraan', function (Blueprint $table) {
             $table->id();
-            $table->string('tipe');
+            // $table->string('armada');
+            $table->string('jenis_kendaraan');
             $table->string('plat_nomor');
-            $table->string('kapasitas');
+            $table->string('jumlah_kursi');
+            // $table->string('kapasitas');
             $table->timestamps();
         });
     }
