@@ -8,9 +8,80 @@ use App\Models\InformasiTravel;
 
 class InformasiTravelCT extends Controller
 {
+    public function index()
+    {
+        $travels = InformasiTravel::all();
+        return view('data-travely.informasi-travely', compact('travels'));
+    }
+
+
+    public function addTravel(Request $request)
+    {
+        $request->validate([
+            'keberangkatan' => 'required|string|max:255',
+            'tujuan' => 'required|string|max:255',
+            'jumlah_kursi' => 'required|string',
+            'tanggal_keberangkatan' => 'required|date',
+            'jam_keberangkatan' => 'required|date_format:H:i',
+        ]);
+    
+        try {
+            InformasiTravel::create($request->all());
+            return redirect()->back()->with('success', 'Data travel berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('warning', 'Gagal menambahkan data, silahkan periksa kembali!');
+        }
+    }
+    
+    public function updateTravel(Request $request, $id)
+    {
+        $request->validate([
+            'keberangkatan' => 'required|string|max:255',
+            'tujuan' => 'required|string|max:255',
+            'jumlah_kursi' => 'required|string',
+            'tanggal_keberangkatan' => 'required|date',
+            'jam_keberangkatan' => 'required|date_format:H:i',
+        ]);
+    
+        $travels = InformasiTravel::find($id);
+    
+        if (!$travels) {
+            return redirect()->route('itr.index')->with('warning', 'Data travel tidak ditemukan.');
+        }
+    
+        try {
+            $travels->update([
+                'keberangkatan' => $request->input('keberangkatan'),
+                'tujuan' => $request->input('tujuan'),
+                'jumlah_kursi' => $request->input('jumlah_kursi'),
+                'tanggal_keberangkatan' => $request->input('tanggal_keberangkatan'),
+                'jam_keberangkatan' => $request->input('jam_keberangkatan'),
+            ]);
+    
+            return redirect()->route('itr.index')->with('success', 'Data travel berhasil diperbarui.');
+        } catch (\Exception $e) {
+            return redirect()->route('itr.index')->with('warning', 'Gagal memperbarui data travel, silahkan periksa kembali!');
+        }
+    }
+
+    public function deleteTravel($id)
+    {
+        $travels = InformasiTravel::find($id);
+    
+        if (!$travels) {
+            return redirect()->route('itr.index')->with('warning', 'Data travel tidak ditemukan.');
+        }
+    
+        // Hapus data mobil dari database
+        $travels->delete();
+    
+        return redirect()->route('itr.index')->with('success', 'Data Travel berhasil dihapus.');
+    }
+    
+    
+
     public function store( Request $request){
         $validator = Validator::make($request->all(), [
-            'armada' => 'required|string|max:255',
             'keberangkatan' => 'required|string|max:255',
             'tujuan' => 'required|string|max:255',
             'jumlah_kursi' => 'required|string',
@@ -41,7 +112,6 @@ class InformasiTravelCT extends Controller
     {
         // Validasi input
         $validator = Validator::make( $request->all(), [
-            'armada' => 'sometimes|string|max:255',
             'keberangkatan' => 'sometimes|string|max:255',
             'tujuan' => 'sometimes|string|max:255',
             'jumlah_kursi' => 'sometimes|integer',

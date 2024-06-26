@@ -9,5 +9,10 @@ class Kendaraan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['jenis_kendaraan', 'plat_nomor', 'jumlah_kursi'];
+    protected $table = 'kendaraan';
+    protected $fillable = [
+        'armada',
+        'plat_nomor', 
+        'kapasitas'
+    ];
 }
