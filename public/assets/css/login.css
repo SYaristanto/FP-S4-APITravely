@@ -1,0 +1,235 @@
+ /*--------------------------------------------------------------
+  # Login Page
+  --------------------------------------------------------------*/
+  
+  /* Right Box */
+  .right-box {
+    background-color: #5755FE;
+    height: 100vh;
+    width: 400px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+  
+  /* Center Image */
+  .center-image {
+    position: absolute;
+    top: 65%;
+    right: 230px;
+    transform: translateY(-50%);
+    z-index: 2;
+    max-width: 250px;
+    filter: drop-shadow(5px 7px 15px #f6f9ff);
+  }
+  
+  /* Left Bottom Image */
+  .left-bottom-image {
+    position: absolute;
+    top: 90%;
+    left: -390px;
+    max-width: 600px;
+    z-index: 0;
+  }
+  
+  /* Main Content */
+  .main-content {
+    /* border: 1px solid tomato; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    /* padding: 20px; */
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .col-md-8 {
+    flex: 1 1 50%;
+    /* max-width: 50%; */
+    padding: 20px;
+  }
+  
+  .main-content > .left {
+    /* border: 5px solid black !important; */
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .main-content > .left > .pagetitle {
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main-content > .left > .login-form {
+    width: 370px;  
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 !important;
+  }
+  
+  .main-content > .left > .login-form > div {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    /* border: 1px solid red; */
+  }
+  
+  .main-content > .left > .login-form > .row {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* margin: 0 !important; */
+    /* padding: 0 !important; */
+    /* left: 0; */
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    width: 100%;
+  }
+  
+  .main-content > .left > .login-form > .row > .btn-login {
+    border: 1px solid red;
+    margin-top: 15px !important;
+    padding: 10px !important;
+    text-align: center;
+  }
+  
+  .main-content > .left > .login-form > div > a {
+    /* text-align: right; */
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: right;
+  }
+  
+  .main-content > .left > .login-form > input,
+  .main-content > .left > .login-form > label {
+    margin: 0 !important;
+  }
+  
+  .main-content > .left > .login-form > label {
+    left: 0 !important;
+  }
+  
+  .main-content > .right {
+    width: 30%;
+    height: 100%;
+    background-color: #5755FE;
+  }
+  
+  .main-content > img {
+    position: absolute;
+    top: 300px;
+    right: 320px;
+  }
+  
+  .left > img{
+    /* border: 1px solid red; */
+    margin: 0 !important;
+    width: 200px;
+    height: 200px;
+    
+  }
+  
+  .main-content > img:nth-child(4) {
+    position: absolute;
+    /* border: 1px solid red; */
+    top: 500px !important;
+    left: -280px;
+  }
+  
+  /* .main-content label {
+    text-indent: 100px;
+  } */
+  
+  .main-content form input {
+    /* margin-bottom: 10px;
+    margin-left: 100px; */
+    width: 500px;
+    border-radius: 60px;
+  }
+  
+  .main-content form a {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 100px;
+    text-align: center;
+    width: 500px;
+    border-radius: 60px;
+  }
+
+  @media (max-width: 768px) {
+    .col-md-8 {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+    
+    .center-image {
+      position: absolute;
+      top: 300px;
+        left: 450px;
+        width: 220px;
+      /* max-width: 300px; */
+      /* margin: 20px auto; */
+    }
+    
+    .left-bottom-image, .right-box {
+      display: none; /* Hide these elements on tablets */
+    }
+  }
+
+  @media (max-width: 576px) {
+  
+  
+    /*--------------------------------------------------------------
+    # Login Page
+    --------------------------------------------------------------*/
+    
+    .main-content {
+        /* padding: 10px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .main-content > .right {
+        display: none;
+      }
+    
+      .col-md-8 {
+        max-width: 100px;
+        padding: 10px;
+      }
+    
+      .right-box {
+        display: none;
+      }
+      
+      .form-control, .btn {
+        font-size: 14px;
+        max-width: 100%;
+      }
+    
+      .center-image {
+        display: none;
+      }
+    
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* width: 100%; */
+        /* padding:0 100px; */
+      }
+    }

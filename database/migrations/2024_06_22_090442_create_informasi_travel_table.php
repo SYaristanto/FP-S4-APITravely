@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('informasi_travel', function (Blueprint $table) {
             $table->id();
-            $table->string('armada');
             $table->string('keberangkatan');
             $table->string('tujuan');
             $table->date('tanggal_keberangkatan');

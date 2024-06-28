@@ -2,15 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Firebase\JWT\JWT;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use Firebase\JWT\JWT;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthCT extends Controller
 {
+
+    public function index()
+    {
+        return view('login.index');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|string|email|exists:users,email',
+            'password' => 'required|string'
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/home');
+        }
+
+        return back()->with(
+            'loginError', 'Login Failed!'
+        );
+    }
+
     public function register(Request $request) {
 
         // buat validasi inputan
@@ -121,5 +145,6 @@ class AuthCT extends Controller
             ], "token" => "Bearer {$token}"
         ]);
     }
+    
     
 }
