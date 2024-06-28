@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('tiket', function (Blueprint $table) {
             $table->id();
             $table->string('nomor_kursi')->unique();
-            // $table->string('jumlah_kursi');
             $table->unsignedBigInteger('pesanan_id');
             $table->timestamps();
 

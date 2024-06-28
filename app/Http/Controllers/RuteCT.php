@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\InformasiTravel;
+use App\Models\Rute;
 
-class InformasiTravelCT extends Controller
+class RuteCT extends Controller
 {
     public function store( Request $request) {
         $validator = Validator::make( $request->all(), [
-           'armada' => 'required|max:50',
            'keberangkatan' => 'required|max:50',
            'tujuan' => 'required|max:50',
-           'tanggal_keberangkatan' => 'required|date',
            'jam_keberangkatan' => 'required|date_format:H:i',
+           'harga_per_orang' => 'required|max:50',
            'kursi_tersedia' => 'required|max:50'
         ]);
         
@@ -24,26 +23,25 @@ class InformasiTravelCT extends Controller
 
         $validated = $validator->validated();
 
-        InformasiTravel::create( $validated );
+        Rute::create( $validated );
 
         return response()->json("Data berhasil disimpan", 200);
     }
     public function show () {
-        $informasiTravel = InformasiTravel::all();
+        $rute = Rute::all();
 
         return response()->json([
-            'message' => 'Data Informasi Travel',
-            'data' => $informasiTravel
+            'message' => 'Data Kendaraan',
+            'data' => $rute
         ], 200);
     }
     public function update( Request $request, $id){
         $validator = Validator::make( $request->all(), [
-            'armada' => 'sometimes|max:50',
             'keberangkatan' => 'sometimes|max:50',
             'tujuan' => 'sometimes|max:50',
-            'tanggal_keberangkatan' => 'required|date',
-            'jam_keberangkatan' => 'required|date_format:H:i',
-            'kursi_tersedia' => 'required|max:50'
+            'jam_keberangkatan' => 'sometimes|date_format:H:i',
+            'harga_per_orang' => 'sometimes|max:50',
+            'kursi_tersedia' => 'sometimes|max:50',
          ]);
          
          if ( $validator->fails() ) {
@@ -51,23 +49,21 @@ class InformasiTravelCT extends Controller
         }
 
         $validated = $validator->validated();
-        $informasitravel = InformasiTravel::find( $id );
+        $rute = Rute::find( $id );
 
-        if ( $informasitravel ) {
-            InformasiTravel::where( 'id', $id )->update($validated);
+        if ( $rute ) {
+            Rute::where( 'id', $id )->update($validated);
 
             return response()->json("Data dengan id: {$id} berhasil di update", 200);
         }
     }
     public function delete($id) {
-        $informasitravel = InformasiTravel::where('id', $id)->get();
+        $rute = Rute::where('id', $id)->get();
 
-        if($informasitravel) {
-           InformasiTravel::where('id', $id)->delete();
+        if($rute) {
+           Rute::where('id', $id)->delete();
 
            return response()->json("Data dengan id: {$id} berhasil dihapus", 200);
         }
     }
-        
 }
-

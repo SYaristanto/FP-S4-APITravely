@@ -13,8 +13,18 @@ class InformasiTravel extends Model
         'armada',
         'keberangkatan',
         'tujuan',
-        'jumlah_kursi',
         'tanggal_keberangkatan',
         'jam_keberangkatan',
+        'kursi_tersedia',
     ];
+
+    public function kendaraan()
+    {
+        return $this->belongsTo(Kendaraan::class);
+    }
+
+    public function rute()
+    {
+        return $this->belongsTo(Rute::class);
+    }
 }

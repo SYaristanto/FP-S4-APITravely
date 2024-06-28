@@ -18,10 +18,16 @@ return new class extends Migration
             $table->string('armada');
             $table->string('keberangkatan');
             $table->string('tujuan');
-            $table->string('jumlah_kursi');
             $table->date('tanggal_keberangkatan');
             $table->time('jam_keberangkatan');
+            $table->string('kursi_tersedia');
+            $table->unsignedBigInteger('kendaraan_id');
+            $table->unsignedBigInteger('rute_id');
             $table->timestamps();
+
+            //Foreign Keys
+            $table->foreign('kendaraan_id')->references('id')->on('kendaraan')->onDelete('cascade')->onUpdate('no action');
+            $table->foreign('rute_id')->references('id')->on('rute')->onDelete('cascade')->onUpdate('no action');
         });
     }
 
