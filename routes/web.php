@@ -20,6 +20,8 @@ use App\Http\Controllers\KendaraanCT;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+<<<<<<< HEAD
+=======
 
 Route::get('/', function () {  //halaman login
     return redirect('/login');
@@ -92,3 +94,4 @@ Route::get('/profile', function () {
 Route::get('/gks', function () {
     return view('ganti_kata_sandi');
 });
+>>>>>>> 3abdc52060f516629b09aaa45d580524b6197167

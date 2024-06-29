@@ -8,6 +8,16 @@ use App\Models\InformasiTravel;
 
 class InformasiTravelCT extends Controller
 {
+<<<<<<< HEAD
+    public function store( Request $request) {
+        $validator = Validator::make( $request->all(), [
+           'armada' => 'required|max:50',
+           'keberangkatan' => 'required|max:50',
+           'tujuan' => 'required|max:50',
+           'tanggal_keberangkatan' => 'required|date',
+           'jam_keberangkatan' => 'required|date_format:H:i',
+           'kursi_tersedia' => 'required|max:50'
+=======
     public function index()
     {
         $travels = InformasiTravel::all();
@@ -106,18 +116,18 @@ class InformasiTravelCT extends Controller
             'jumlah_kursi' => 'required|string',
             'tanggal_keberangkatan' => 'required|date',
             'jam_keberangkatan' => 'required|date_format:H:i',
+>>>>>>> 3abdc52060f516629b09aaa45d580524b6197167
         ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->messages()->toArray(), 400);
+        
+        if ( $validator->fails() ) {
+            return response()->json( $validator->messages() )->setStatusCode(442);
         }
 
-        $informasiTravel = InformasiTravel::create( $request->all());
-        
-        return response()->json([
-            'message' => 'Informasi Travel Berhasil Disimpan',
-            'data' => $informasiTravel
-        ], 201);
+        $validated = $validator->validated();
+
+        InformasiTravel::create( $validated );
+
+        return response()->json("Data berhasil disimpan", 200);
     }
     public function show () {
         $informasiTravel = InformasiTravel::all();
@@ -127,10 +137,20 @@ class InformasiTravelCT extends Controller
             'data' => $informasiTravel
         ], 200);
     }
-    public function update(Request $request, $id)
-    {
-        // Validasi input
+    public function update( Request $request, $id){
         $validator = Validator::make( $request->all(), [
+<<<<<<< HEAD
+            'armada' => 'sometimes|max:50',
+            'keberangkatan' => 'sometimes|max:50',
+            'tujuan' => 'sometimes|max:50',
+            'tanggal_keberangkatan' => 'required|date',
+            'jam_keberangkatan' => 'required|date_format:H:i',
+            'kursi_tersedia' => 'required|max:50'
+         ]);
+         
+         if ( $validator->fails() ) {
+             return response()->json( $validator->messages() )->setStatusCode(442);
+=======
             'keberangkatan' => 'sometimes|string|max:255',
             'tujuan' => 'sometimes|string|max:255',
             'jumlah_kursi' => 'sometimes|integer',
@@ -141,35 +161,22 @@ class InformasiTravelCT extends Controller
         // Cek jika validasi gagal
         if ($validator->fails()) {
             return response()->json($validator->messages(), 442);
+>>>>>>> 3abdc52060f516629b09aaa45d580524b6197167
         }
 
-        // Ambil data yang tervalidasi
         $validated = $validator->validated();
+        $informasitravel = InformasiTravel::find( $id );
 
-        // Cari data informasi travel berdasarkan ID
-        $informasiTravel = InformasiTravel::find($id);
+        if ( $informasitravel ) {
+            InformasiTravel::where( 'id', $id )->update($validated);
 
-        // Cek jika data ditemukan
-        if ($informasiTravel) {
-            // Update data informasi travel
-            InformasiTravel::where('id', $id)->update($validated);
-            
-            // Ambil data yang diupdate
-            $updatedInformasiTravel = InformasiTravel::find($id);
-
-            return response()->json([
-                'message' => "Data dengan id: {$id} berhasil diupdate",
-                'data' => $updatedInformasiTravel
-                , 200]);
+            return response()->json("Data dengan id: {$id} berhasil di update", 200);
         }
-
-        // Jika data tidak ditemukan
-        return response()->json("Data dengan id: {$id} tidak ditemukan", 404);
     }
     public function delete($id) {
-        $informasiTravel = InformasiTravel::where('id', $id)->get();
+        $informasitravel = InformasiTravel::where('id', $id)->get();
 
-        if($informasiTravel) {
+        if($informasitravel) {
            InformasiTravel::where('id', $id)->delete();
 
            return response()->json("Data dengan id: {$id} berhasil dihapus", 200);

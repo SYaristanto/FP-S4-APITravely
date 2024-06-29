@@ -19,12 +19,10 @@ return new class extends Migration
             $table->date('tanggal_pemesanan');
             $table->enum('status_pesanan',['Pending', 'Confirmed', 'Cancelled']);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('jadwal_id');
             $table->timestamps();
 
             //Foreign Keys
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('no action');
-            $table->foreign('jadwal_id')->references('id')->on('jadwal')->onDelete('cascade')->onUpdate('no action');
         });
     }
 

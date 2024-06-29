@@ -17,10 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('keberangkatan');
             $table->string('tujuan');
-            $table->integer('jumlah_orang');
-            $table->time('jam_keberangkatan');
+            // $table->time('jam_keberangkatan');
             $table->string('harga_per_orang');
-            $table->string('ketersediaan_seat');
+            // $table->string('kursi_tersedia');
             $table->timestamps();
         });
     }
