@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\InformasiTravelCT;
+use App\Models\InformasiTravel;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthCT;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,18 +22,19 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //Panggil AuthCT sebagai object
-use App\Http\Controllers\AuthCT;
+
 
 // Api Register & Login
 Route::post('/register', [AuthCT::class, 'register']);
 Route::post('/login', [AuthCT::class, 'login']);
 
-//Panggil InformasiTravelCT sebagai object
-use App\Http\Controllers\InformasiTravelCT;
-use App\Models\InformasiTravel;
 
 //Api CRUD data travel
+Route::get('/InformasiTravel/search',[InformasiTravelCT::class, 'searchTiket']);
 Route::post('/InformasiTravel', [InformasiTravelCT::class, 'store']);
 Route::get('/InformasiTravel',[InformasiTravelCT::class, 'show']);
 Route::put('InformasiTravel/{id}', [InformasiTravelCT::class, 'update']);
 Route::delete('InformasiTravel/{id}', [InformasiTravelCT::class, 'delete']);
+
+// Api CRUD users
+Route::get('/users/{id}', [UserController::class, 'show']);

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Kendaraan;
+use Illuminate\Http\Request;
+use App\Models\InformasiTravel;
+use Illuminate\Support\Facades\Validator;
 
 class KendaraanCT extends Controller
 {
@@ -30,26 +31,6 @@ class KendaraanCT extends Controller
         }
     }
     
-    public function searchTiket(Request $request)
-    {
-        $request->validate([
-            'keberangkatan' => 'required|string',
-            'tujuan' => 'required|string',
-            'tanggal' => 'required|date',
-        ]);
-
-        $keberangkatan = $request->input('keberangkatan');
-        $tujuan = $request->input('tujuan');
-        $tanggal = $request->input('tanggal');
-
-        // Misalnya, Anda bisa melakukan pencarian rute berdasarkan keberangkatan, tujuan, dan tanggal
-        $rute = Kendaraan::where('keberangkatan', $keberangkatan)
-            ->where('tujuan', $tujuan)
-            ->where('tanggal_keberangkatan', $tanggal)
-            ->get();
-
-        return response()->json(['message' => 'Data Informasi Travel', 'data' => $rute]);
-    }
 
     public function store( Request $request) {
         $validator = Validator::make( $request->all(), [

@@ -40,7 +40,6 @@ Route::get('/rute', function () {  //halaman data travely (rute)
 Route::get('/kendaraan', function () {  //halaman data travely (kendaraan)
     return view('data-travely.kendaraan');   
 });
-Route::get('/itr',[KendaraanCT::class, 'searchTiket']);
 Route::get('/kendaraan', [KendaraanCT::class, 'index'])->name('kdr.index');
 Route::post('/kendaraan', [KendaraanCT::class, 'addKendaraan'])->name('kdr.addKendaraan');
 // end CRUD data travely (kendaraan)
@@ -49,6 +48,7 @@ Route::post('/kendaraan', [KendaraanCT::class, 'addKendaraan'])->name('kdr.addKe
 Route::get('/itr', function () {  //halaman data travely (informasi travely)
     return view('data-travely.informasi-travely');   
 });
+Route::get('/InformasiTravel/search',[InformasiTravelCT::class, 'searchTiket']);
 Route::get('/itr',[InformasiTravelCT::class, 'index'])->name('itr.index');
 Route::post('/informasiTravel',[InformasiTravelCT::class, 'addTravel'])->name('itr.addTravel');
 Route::put('/informasiTravel/{id}',[InformasiTravelCT::class, 'updateTravel'])->name('itr.updateTravel');
