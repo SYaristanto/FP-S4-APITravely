@@ -5,6 +5,8 @@ use App\Models\Kendaraan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InformasiTravelCT;
 use App\Http\Controllers\KendaraanCT;
+use App\Http\Controllers\RuteCT;
+use App\Models\Rute;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +22,6 @@ use App\Http\Controllers\KendaraanCT;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-<<<<<<< HEAD
-=======
 
 Route::get('/', function () {  //halaman login
     return redirect('/login');
@@ -34,9 +34,15 @@ Route::get('/home', function () {  //halaman home
     return view('home');    
 });
 
+// start CRUD data travely (rute)
 Route::get('/rute', function () {  //halaman data travely (rute)
     return view('data-travely.rute');
 });
+Route::get('/rute', [RuteCT::class, 'index'])->name('rts.index');
+Route::post('/rute', [RuteCT::class, 'addRute'])->name('rts.addRute');
+Route::put('/rute/{id}', [RuteCT::class, 'updateRute'])->name('rts.updateRute');
+Route::delete('/rute/{id}', [RuteCT::class, 'deleteRute'])->name('rts.deleteRute');
+// end CRUD data travely (rute)
 
 // start CRUD data travely (kendaraan)
 Route::get('/kendaraan', function () {  //halaman data travely (kendaraan)
@@ -44,6 +50,8 @@ Route::get('/kendaraan', function () {  //halaman data travely (kendaraan)
 });
 Route::get('/kendaraan', [KendaraanCT::class, 'index'])->name('kdr.index');
 Route::post('/kendaraan', [KendaraanCT::class, 'addKendaraan'])->name('kdr.addKendaraan');
+Route::put('/kendaraan/{id}', [KendaraanCT::class, 'updateKendaraan'])->name('kdr.updateKendaraan');
+Route::delete('/kendaraan/{id}', [KendaraanCT::class, 'deleteKendaraan'])->name('kdr.deleteKendaraan');
 // end CRUD data travely (kendaraan)
 
 // Start CRUD data travel (Informasi Travely)
@@ -51,6 +59,8 @@ Route::get('/itr', function () {  //halaman data travely (informasi travely)
     return view('data-travely.informasi-travely');   
 });
 Route::get('/InformasiTravel/search',[InformasiTravelCT::class, 'searchTiket']);
+Route::get('InformasiTravel/{id}/seats', [informasiTravelCT::class, 'getSeatStatus']);
+Route::post('InformasiTravel/{id}/book', [InformasiTravelCT::class, 'bookSeats']);
 Route::get('/itr',[InformasiTravelCT::class, 'index'])->name('itr.index');
 Route::post('/informasiTravel',[InformasiTravelCT::class, 'addTravel'])->name('itr.addTravel');
 Route::put('/informasiTravel/{id}',[InformasiTravelCT::class, 'updateTravel'])->name('itr.updateTravel');
@@ -94,4 +104,3 @@ Route::get('/profile', function () {
 Route::get('/gks', function () {
     return view('ganti_kata_sandi');
 });
->>>>>>> 3abdc52060f516629b09aaa45d580524b6197167

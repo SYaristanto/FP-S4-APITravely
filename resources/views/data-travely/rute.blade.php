@@ -13,197 +13,174 @@
 </div><!-- End Page Title -->
 
 <section class="section">
-    <div class="row">
-        <div class="col-lg-12">
-
-          <div class="card">
-            <div class="card-body">
-              <!-- Vertically centered Modal -->
-              <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#verticalycentered">
-                Tambah Data
-              </button>
-              <div class="modal fade" id="verticalycentered" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Vertically Centered</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    <form>
-                    <div class="row mb-3">
-                        <label for="inputText" class="col-sm-2 col-form-label">Text</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                        <input type="email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                        <input type="password" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
-                        <div class="col-sm-10">
-                        <input type="number" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-                        <div class="col-sm-10">
-                        <input class="form-control" type="file" id="formFile">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-                        <div class="col-sm-10">
-                        <input type="date" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputTime" class="col-sm-2 col-form-label">Time</label>
-                        <div class="col-sm-10">
-                        <input type="time" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
-                        <div class="col-sm-10">
-                        <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#4154f1" title="Choose your color">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Textarea</label>
-                        <div class="col-sm-10">
-                        <textarea class="form-control" style="height: 100px"></textarea>
-                        </div>
-                    </div>
-                    <fieldset class="row mb-3">
-                        <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                        <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                            First radio
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                            <label class="form-check-label" for="gridRadios2">
-                            Second radio
-                            </label>
-                        </div>
-                        <div class="form-check disabled">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios" value="option" disabled>
-                            <label class="form-check-label" for="gridRadios3">
-                            Third disabled radio
-                            </label>
-                        </div>
-                        </div>
-                    </fieldset>
-                    <div class="row mb-3">
-                        <legend class="col-form-label col-sm-2 pt-0">Checkboxes</legend>
-                        <div class="col-sm-10">
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck1">
-                            <label class="form-check-label" for="gridCheck1">
-                            Example checkbox
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck2" checked>
-                            <label class="form-check-label" for="gridCheck2">
-                            Example checkbox 2
-                            </label>
-                        </div>
-
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Disabled</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" value="Read only / Disabled" disabled>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Select</label>
-                        <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+  <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <!-- Vertically centered Modal -->
+            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+              Tambah Data
+            </button>
+            <div class="modal fade" id="verticalycentered" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Rute</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="row g-3" action="{{ route('rts.addRute') }}" method="POST">
+                      @csrf
+                      <div class="col-12">
+                        <label for="keberangkatan" class="form-label">Keberangkatan</label>
+                        <select class="form-select" aria-label="Default select" name="keberangkatan">
+                            <option selected disabled>Pilih Lokasi Keberangkatan</option>
+                            <option value="Jakarta Barat">Jakarta Barat</option>
+                            <option value="Jakarta Selatan">Jakarta Selatan</option>
+                            <option value="Jakarta Pusat">Jakarta Pusat</option>
+                            <option value="Jakarta Timur">Jakarta Timur</option>
+                            <option value="Jakarta Utara">Jakarta Utara</option>
+                            <option value="Bandung">Bandung</option>
+                            <option value="Bekasi">Bekasi</option>
+                            <option value="Bogor">Bogor</option>
+                            <option value="Cirebon">Cirebon</option>
+                            <option value="Depok">Depok</option>
                         </select>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Multi Select</label>
-                        <div class="col-sm-10">
-                        <select class="form-select" multiple aria-label="multiple select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                      </div>
+                      <div class="col-12">
+                        <label for="tujuan" class="form-label">Tujuan</label>
+                        <select class="form-select" aria-label="Default select" name="tujuan">
+                            <option selected disabled>Pilih Lokasi Tujuan</option>
+                            <option value="Jakarta Barat">Jakarta Barat</option>
+                            <option value="Jakarta Selatan">Jakarta Selatan</option>
+                            <option value="Jakarta Pusat">Jakarta Pusat</option>
+                            <option value="Jakarta Timur">Jakarta Timur</option>
+                            <option value="Jakarta Utara">Jakarta Utara</option>
+                            <option value="Bandung">Bandung</option>
+                            <option value="Bekasi">Bekasi</option>
+                            <option value="Bogor">Bogor</option>
+                            <option value="Cirebon">Cirebon</option>
+                            <option value="Depok">Depok</option>
                         </select>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Submit Button</label>
-                        <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Submit Form</button>
-                        </div>
-                    </div>
-
+                      </div>
+                      <div class="col-12">
+                          <label for="harga_per_orang" class="form-label">Harga per Orang</label>
+                          <input type="text" class="form-control" id="harga_per_orang" name="harga_per_orang" placeholder="Masukkan Harga Per Orang">
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                      </div>
                     </form><!-- End General Form Elements --> 
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
                   </div>
                 </div>
-              </div><!-- End Vertically centered Modal-->
-            </div>
-
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>
-                      <b>Keberangkatan</b>
-                    </th>
-                    <th>Tujuan</th>
-                    <th>Jumlah Orang</th>
-                    <th>Pilihan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
-
-            </div>
+              </div>
+            </div><!-- End Vertically centered Modal-->
           </div>
 
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Keberangkatan</th>
+                  <th>Tujuan</th>
+                  <th>Harga per Orang</th>
+                  <th>Pilihan</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($rutes as $rts)
+                    <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>{{ $rts->keberangkatan }}</td>
+                      <td>{{ $rts->tujuan }}</td>
+                      <td>{{ $rts->harga_per_orang }}</td>
+                      <td>
+                        <div class="d-flex align-items-center gap-1 ">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRuteModal{{ $rts->id }}">
+                              <i class="bi bi-pencil-square"></i>
+                          </button>
+                          <form action="{{ route('rts.deleteRute', $rts->id) }}" method="POST" class="">
+                            @csrf
+                            @method('DELETE')
+                              <button type="submit" class="btn btn-danger mt-3">
+                                  <i class="bi bi-trash"></i>
+                              </button>
+                          </form>
+                        </div>
+                      </td>
+                      <!-- modal edit rute-->
+                      <div class="modal fade" id="editRuteModal{{ $rts->id }}" tabindex="-1" aria-labelledby="editRuteModal{{ $rts->id }}Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editRuteModal{{ $rts->id }}Label">Edit Data Rute</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="row g-3" action="{{ route('rts.updateRute', ['id' => $rts->id]) }}" method="POST">
+                                  @csrf
+                                  @method('PUT')
+                                  <div class="col-12">
+                                      <label for="keberangkatan" class="form-label">Keberangkatan</label>
+                                      <select class="form-select" aria-label="Default select" name="keberangkatan">
+                                        @foreach ($rutes as $rts)
+                                          <option value="{{ $rts->id }}">{{ $rts->keberangkatan }}</option>
+                                          <option value="Jakarta Barat">Jakarta Barat</option>
+                                          <option value="Jakarta Selatan">Jakarta Selatan</option>
+                                          <option value="Jakarta Pusat">Jakarta Pusat</option>
+                                          <option value="Jakarta Timur">Jakarta Timur</option>
+                                          <option value="Jakarta Utara">Jakarta Utara</option>
+                                          <option value="Bandung">Bandung</option>
+                                          <option value="Bekasi">Bekasi</option>
+                                          <option value="Bogor">Bogor</option>
+                                          <option value="Cirebon">Cirebon</option>
+                                          <option value="Depok">Depok</option>
+                                        @endforeach
+                                      </select>
+                                      <!-- <input type="text" class="form-control" id="keberangkatan" name="keberangkatan" value="{{ $rts->keberangkatan }}"> -->
+                                    </div>
+                                    <div class="col-12">
+                                      <label for="tujuan" class="form-label">Tujuan</label>
+                                      <select class="form-select" aria-label="Default select" name="tujuan">
+                                        @foreach ($rutes as $rts)
+                                          <option value="{{ $rts->id }}">{{ $rts->tujuan }}</option>
+                                          <option value="Jakarta Barat">Jakarta Barat</option>
+                                          <option value="Jakarta Selatan">Jakarta Selatan</option>
+                                          <option value="Jakarta Pusat">Jakarta Pusat</option>
+                                          <option value="Jakarta Timur">Jakarta Timur</option>
+                                          <option value="Jakarta Utara">Jakarta Utara</option>
+                                          <option value="Bandung">Bandung</option>
+                                          <option value="Bekasi">Bekasi</option>
+                                          <option value="Bogor">Bogor</option>
+                                          <option value="Cirebon">Cirebon</option>
+                                          <option value="Depok">Depok</option>
+                                        @endforeach
+                                      </select>
+                                  </div>
+                                  <div class="col-12">
+                                      <label for="harga_per_orang" class="form-label">Harga Per Orang</label>
+                                      <input type="text" class="form-control" id="harga_per_orang" name="harga_per_orang" value="{{ $rts->harga_per_orang }}">
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="submit" class="btn btn-primary">Save changes</button>
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
 
 </main><!-- End #main -->
 

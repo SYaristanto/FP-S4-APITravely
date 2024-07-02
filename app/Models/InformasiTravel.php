@@ -10,11 +10,11 @@ class InformasiTravel extends Model
     use HasFactory;
     protected $table = 'informasi_travel';
     protected $fillable = [
-        'keberangkatan',
-        'tujuan',
+        'kendaraan_id',
+        'rute_id',
+        'kursi_tersedia',
         'tanggal_keberangkatan',
         'jam_keberangkatan',
-        'kursi_tersedia',
     ];
 
     public function kendaraan()

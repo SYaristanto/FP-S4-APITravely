@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('pesanan', function (Blueprint $table) {
             $table->id();
             // $table->string('nama_pemesan');
+            $table->intenger('no_pesanan');
+            $table->string('nama_penumpang');
+            $table->string('total_harga');
             $table->date('tanggal_pemesanan');
             $table->enum('status_pesanan',['Pending', 'Confirmed', 'Cancelled']);
-            $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             //Foreign Keys

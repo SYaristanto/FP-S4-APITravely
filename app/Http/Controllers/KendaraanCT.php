@@ -20,7 +20,7 @@ class KendaraanCT extends Controller
         $request->validate([
             'armada' => 'required|string',
             'plat_nomor' => 'required|string',
-            'kapasitas' => 'required|string',
+            'jumlah_kursi' => 'required|string',
         ]);
 
         try {
@@ -30,19 +30,44 @@ class KendaraanCT extends Controller
             return redirect()->back()->with('warning', 'Gagal menambahkan data, silahkan periksa kembali!');
         }
     }
+
+    public function updateKendaraan(Request $request, $id) {
+
+        $kendaraan = Kendaraan::find($id);
+
+        if($kendaraan) {
+            $kendaraan->armada = $request->input('armada');
+            $kendaraan->plat_nomor = $request->input('plat_nomor');
+            $kendaraan->jumlah_kursi = $request->input('jumlah_kursi');
+
+            $kendaraan->save();
+
+            return redirect()->route('kdr.index', ['id' => $kendaraan->id])->with('success', 'Data Kendaraan berhasil diperbarui.');
+        } else {
+            return redirect()->route('kdr.index')->with('warning', 'Gagal memperbarui Kendaraan, silahkan periksa kembali!');
+        }
+    }
+
+    public function deleteKendaraan($id)
+    {
+        $kendaraan = Kendaraan::find($id);
+    
+        if (!$kendaraan) {
+            return redirect()->route('kdr.index')->with('warning', 'Data Kendaraan tidak ditemukan.');
+        }
+    
+        // Hapus data mobil dari database
+        $kendaraan->delete();
+    
+        return redirect()->route('kdr.index')->with('success', 'Data Kendaraan berhasil dihapus.');
+    }
     
 
     public function store( Request $request) {
         $validator = Validator::make( $request->all(), [
-<<<<<<< HEAD
            'armada' => 'required|max:50',
            'plat_nomor' => 'required|max:50',
            'jumlah_kursi' => 'required|max:50'
-=======
-            'armada' => 'required|string',
-            'plat_nomor' => 'required|string',
-            'kapasitas' => 'required|string',
->>>>>>> 3abdc52060f516629b09aaa45d580524b6197167
         ]);
         
         if ( $validator->fails() ) {

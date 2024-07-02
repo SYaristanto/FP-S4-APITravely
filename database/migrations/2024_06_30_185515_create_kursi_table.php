@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kendaraan', function (Blueprint $table) {
+        Schema::create('kursi', function (Blueprint $table) {
             $table->id();
-            $table->string('armada');
-            $table->string('plat_nomor');
-            $table->string('jumlah_kursi');
+            // $table->unsignedBigInteger('travel_id');
+            $table->foreignId('travel_id')->constrained('informasi_travel')->onDelete('cascade');
+            $table->integer('seat_number');
+            $table->string('status')->default('tersedia');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kendaraan');
+        Schema::dropIfExists('kursi');
     }
 };

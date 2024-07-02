@@ -2,19 +2,80 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Rute;
+use Illuminate\Http\Request;
+use App\Models\InformasiTravel;
+use Illuminate\Support\Facades\Validator;
 
 class RuteCT extends Controller
 {
+    public function index ( Request $request) {
+        $travels = InformasiTravel::all();
+        $rutes = Rute::all();
+        return view('data-travely.rute', compact('travels', 'rutes'));
+    }
+
+    public function addRute(Request $request)
+    {
+        $request->validate([
+            // 'armada' => 'required|string',
+            'keberangkatan' => 'required|string|max:255',
+            'tujuan' => 'required|string|max:255',
+            'harga_per_orang' => 'required|string|max:255',
+        ]);
+    
+        try {
+            // InformasiTravel::create([
+            //     'kendaraan_id' => $request->kendaraan_id,
+            //     'keberangkatan' => $request->keberangkatan,
+            //     'tujuan' => $request->tujuan,
+            //     'tanggal_keberangkatan' => $request->tanggal_keberangkatan,
+            //     'jam_keberangkatan' => $request->jam_keberangkatan,
+            //     'kursi_tersedia' => $request->kursi_tersedia,
+            // ]);
+            Rute::create($request->all());
+            return redirect()->back()->with('success', 'Data travel berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('warning', 'Gagal menambahkan data, silahkan periksa kembali!');
+        }
+    }
+
+    public function updateRute(Request $request, $id) {
+
+        $rutes = Rute::find($id);
+
+        if($rutes) {
+            $rutes->armada = $request->input('keberangkatan');
+            $rutes->plat_nomor = $request->input('tujuan');
+            $rutes->jumlah_kursi = $request->input('harga_per_orang');
+
+            $rutes->save();
+
+            return redirect()->route('rts.index', ['id' => $rutes->id])->with('success', 'Data rute berhasil diperbarui.');
+        } else {
+            return redirect()->route('rts.index')->with('warning', 'Gagal memperbarui Rute, silahkan periksa kembali!');
+        }
+    }
+
+    public function deleteRute($id)
+    {
+        $rutes = Rute::find($id);
+    
+        if (!$rutes) {
+            return redirect()->route('rts.index')->with('warning', 'Data travel tidak ditemukan.');
+        }
+    
+        // Hapus data mobil dari database
+        $rutes->delete();
+    
+        return redirect()->route('rts.index')->with('success', 'Data Travel berhasil dihapus.');
+    }
+
     public function store( Request $request) {
         $validator = Validator::make( $request->all(), [
            'keberangkatan' => 'required|max:50',
            'tujuan' => 'required|max:50',
-           'jam_keberangkatan' => 'required|date_format:H:i',
            'harga_per_orang' => 'required|max:50',
-           'kursi_tersedia' => 'required|max:50'
         ]);
         
         if ( $validator->fails() ) {

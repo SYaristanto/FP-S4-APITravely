@@ -42,45 +42,44 @@
                                     <form class="row g-3" action="{{ route('itr.addTravel') }}" method="POST">
                                         @csrf
                                         <div class="col-12">
-                                            <label for="keberangkatan" class="form-label">Keberangkatan</label>
-                                            <select class="form-select" aria-label="Default select" name="keberangkatan">
-                                                <option selected disabled>Pilih Lokasi Keberangkatan</option>
-                                                <option value="Jakarta Barat">Jakarta Barat</option>
-                                                <option value="Jakarta Selatan">Jakarta Selatan</option>
-                                                <option value="Jakarta Pusat">Jakarta Pusat</option>
-                                                <option value="Jakarta Timur">Jakarta Timur</option>
-                                                <option value="Jakarta Utara">Jakarta Utara</option>
-                                                <option value="Bandung">Bandung</option>
-                                                <option value="Bekasi">Bekasi</option>
-                                                <option value="Bogor">Bogor</option>
-                                                <option value="Cirebon">Cirebon</option>
-                                                <option value="Depok">Depok</option>
+                                            <label for="kendaraan_id" class="form-label">Armada</label>
+                                            <select class="form-select" aria-label="Default select" name="kendaraan_id" required>
+                                                <option selected disabled>Pilih Armada</option>
+                                                @foreach ($kendaraan as $kdr)
+                                                    <option value="{{ $kdr->id }}">{{ $kdr->armada }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-12">
-                                            <label for="tujuan" class="form-label">Tujuan</label>
-                                            <select class="form-select" aria-label="Default select" name="tujuan">
-                                                <option selected disabled>Pilih Lokasi Tujuan</option>
-                                                <option value="Jakarta Barat">Jakarta Barat</option>
-                                                <option value="Jakarta Selatan">Jakarta Selatan</option>
-                                                <option value="Jakarta Pusat">Jakarta Pusat</option>
-                                                <option value="Jakarta Timur">Jakarta Timur</option>
-                                                <option value="Jakarta Utara">Jakarta Utara</option>
-                                                <option value="Bandung">Bandung</option>
-                                                <option value="Bekasi">Bekasi</option>
-                                                <option value="Bogor">Bogor</option>
-                                                <option value="Cirebon">Cirebon</option>
-                                                <option value="Depok">Depok</option>
+                                            <label for="rute_id" class="form-label">Keberangkatan</label>
+                                            <select class="form-select" aria-label="Default select" name="rute_id">
+                                                <option selected disabled>Pilih Keberangkatan</option>
+                                                @foreach ($rutes as $rts)
+                                                    <option value="{{ $rts->id }}">{{ $rts->keberangkatan }} - {{ $rts->tujuan }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
+                                        <!-- <div class="col-12">
+                                            <label for="rute_id" class="form-label">Tujuan</label>
+                                            <select class="form-select" aria-label="Default select" name="rute_id">
+                                                <option selected disabled>Pilih Tujuan</option>
+                                                @foreach ($rutes as $rts)
+                                                    <option value="{{ $rts->id }}">{{ $rts->tujuan }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div> -->
                                         <div class="col-12">
-                                            <label for="jumlah_kursi" class="form-label">Kursi </label>
-                                            <input type="text" class="form-control" id="jumlah_kursi" name="jumlah_kursi" placeholder="Masukkan Jumlah Kursi">
+                                            <label for="kursi_tersedia" class="form-label">Kursi Tersedia</label>
+                                            <input type="text" class="form-control" id="kursi_tersedia" name="kursi_tersedia" placeholder="Masukkan Jumlah Kursi">
                                         </div>
                                         <div class="col-12">
                                             <label for="tanggal_keberangkatan" class="form-label">Tanggal Keberangkatan</label>
                                             <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" placeholder="Masukkan Tanggal Keberangkatan">
                                         </div>
+                                        <!-- <div class="col-12">
+                                            <label for="jam_keberangkatan" class="form-label">Kendaraan</label>
+                                            <input type="text" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" placeholder="Masukkan Jam Keberangkatan">
+                                        </div> -->
                                         <div class="col-12">
                                             <label for="jam_keberangkatan" class="form-label">Jam Keberangkatan</label>
                                             <input type="time" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" placeholder="Masukkan Jam Keberangkatan">
@@ -100,6 +99,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Armada</th>
                                 <th>Keberangkatan</th>
                                 <th>Tujuan</th>
                                 <th>Kursi Tersedia</th>
@@ -112,9 +112,10 @@
                             @foreach ($travels as $travel)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $travel->keberangkatan }}</td>
-                                <td>{{ $travel->tujuan }}</td>
-                                <td>{{ $travel->jumlah_kursi }}</td>
+                                <td>{{ $travel->kendaraan->armada }}</td>
+                                <td>{{ $travel->rute->keberangkatan }}</td>
+                                <td>{{ $travel->rute->tujuan }}</td>
+                                <td>{{ $travel->kursi_tersedia }}</td>
                                 <td>{{ $travel->tanggal_keberangkatan }}</td>
                                 <td>{{ $travel->jam_keberangkatan }}</td>
                                 <td>
@@ -140,58 +141,42 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="row g-3" action="{{ route('itr.updateTravel', ['id' => $travel->id])}}" method="POST">
+                                                <form class="row g-3" action="{{ route('itr.updateTravel', ['id' => $travel->id]) }}" method="POST">
                                                     @csrf
-                                                    @method('PUT') <!-- Mengganti metode POST dengan PUT -->
+                                                    @method('PUT')
                                                     <div class="col-12">
-                                                        <label for="keberangkatan" class="form-label">Keberangkatan</label>
-                                                        <select class="form-select" aria-label="Default select" name="keberangkatan" value="{{ $travel->keberangkatan }}">
-                                                            <option selected disabled>Pilih Lokasi Keberangkatan</option>
-                                                            <option value="Jakarta Barat">Jakarta Barat</option>
-                                                            <option value="Jakarta Selatan">Jakarta Selatan</option>
-                                                            <option value="Jakarta Pusat">Jakarta Pusat</option>
-                                                            <option value="Jakarta Timur">Jakarta Timur</option>
-                                                            <option value="Jakarta Utara">Jakarta Utara</option>
-                                                            <option value="Bandung">Bandung</option>
-                                                            <option value="Bekasi">Bekasi</option>
-                                                            <option value="Bogor">Bogor</option>
-                                                            <option value="Cirebon">Cirebon</option>
-                                                            <option value="Depok">Depok</option>
+                                                        <label for="kendaraan_id" class="form-label">Armada</label>
+                                                        <select class="form-select" aria-label="Default select" name="kendaraan_id" value="{{ $travel->armada }}">
+                                                            @foreach ($kendaraan as $kdr)
+                                                                <option value="{{ $kdr->id }}">{{ $kdr->armada }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col-12">
-                                                        <label for="tujuan" class="form-label">Tujuan</label>
-                                                        <select class="form-select" aria-label="Default select" name="tujuan" value="{{ $travel->tujuan }}">
-                                                            <option selected disabled>Pilih Lokasi Tujuan</option>
-                                                            <option value="Jakarta Barat">Jakarta Barat</option>
-                                                            <option value="Jakarta Selatan">Jakarta Selatan</option>
-                                                            <option value="Jakarta Pusat">Jakarta Pusat</option>
-                                                            <option value="Jakarta Timur">Jakarta Timur</option>
-                                                            <option value="Jakarta Utara">Jakarta Utara</option>
-                                                            <option value="Bandung">Bandung</option>
-                                                            <option value="Bekasi">Bekasi</option>
-                                                            <option value="Bogor">Bogor</option>
-                                                            <option value="Cirebon">Cirebon</option>
-                                                            <option value="Depok">Depok</option>
+                                                        <label for="rute_id" class="form-label">Keberangkatan</label>
+                                                        <select class="form-select" aria-label="Default select" name="rute_id" value="{{ $travel->rute_id }}">
+                                                            @foreach ($rutes as $rts)
+                                                                <option value="{{ $rts->id }}">{{ $rts->keberangkatan }} - {{ $rts->tujuan }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col-12">
-                                                        <label for="jumlah_kursi" class="form-label">Jumlah Kursi</label>
-                                                        <input type="text" class="form-control" id="jumlah_kursi" name="jumlah_kursi" placeholder="Masukkan Jumlah Kursi" value="{{ $travel->jumlah_kursi }}">
+                                                        <label for="kursi_tersedia" class="form-label">Kursi Tersedia</label>
+                                                        <input type="text" class="form-control" id="kursi_tersedia" name="kursi_tersedia" value="{{ $travel->kursi_tersedia }}">
                                                     </div>
                                                     <div class="col-12">
                                                         <label for="tanggal_keberangkatan" class="form-label">Tanggal Keberangkatan</label>
-                                                        <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" placeholder="Masukkan Tanggal Keberangkatan" value="{{ $travel->tanggal_keberangkatan }}">
+                                                        <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" value="{{ $travel->tanggal_keberangkatan }}">
                                                     </div>
                                                     <div class="col-12">
                                                         <label for="jam_keberangkatan" class="form-label">Jam Keberangkatan</label>
-                                                        <input type="time" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" placeholder="Masukkan Jam Keberangkatan" value="{{ $travel->jam_keberangkatan }}">
+                                                        <input type="time" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" value="{{ $travel->jam_keberangkatan }}">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     </div>
-                                                </form><!-- End General Form Elements --> 
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
