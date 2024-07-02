@@ -15,17 +15,18 @@ return new class extends Migration
     {
         Schema::create('pesanan', function (Blueprint $table) {
             $table->id();
-            // $table->string('nama_pemesan');
-            $table->intenger('no_pesanan');
-            $table->string('nama_penumpang');
-            $table->string('total_harga');
+            $table->string('kode_pesanan');
             $table->date('tanggal_pemesanan');
-            $table->enum('status_pesanan',['Pending', 'Confirmed', 'Cancelled']);
+            $table->string('keberangkatan');
+            $table->string('tujuan');
+            $table->string('nama_penumpang');
+            $table->string('no_kursi');
+            $table->string('total_harga');
             // $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            //Foreign Keys
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('no action');
+            // //Foreign Keys
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('no action');
         });
     }
 
